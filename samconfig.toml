@@ -1,0 +1,11 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "portfolioSAM"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-dl1pi3eh7je3"
+s3_prefix = "portfolioSAM"
+region = "us-east-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+image_repositories = []
