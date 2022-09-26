@@ -6,6 +6,19 @@ Description: 'portfolioSAM-
 Globals:
   Function:
     Timeout: 20
+Parameters:
+  DBEndpoint:
+    Type: String
+    Description: The database endpoint
+    NoEcho: true
+  DBUser:
+    Type: String
+    Description: The database user
+    NoEcho: true
+  DBPassword:
+    Type: String
+    Description: The database password
+    NoEcho: true
 Resources:
   LogIngestorFunction:
     Type: AWS::Serverless::Function
@@ -18,7 +31,12 @@ Resources:
       MemorySize: 512
       Environment:
         Variables:
-          PARAM1: VALUE
+          DB_ENDPOINT:
+            Ref: DBEndpoint
+          DB_USER:
+            Ref: DBUser
+          DB_PASSWORD:
+            Ref: DBPassword
       Events:
         LogIngestor:
           Type: Api

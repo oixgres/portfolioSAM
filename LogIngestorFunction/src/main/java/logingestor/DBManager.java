@@ -10,9 +10,9 @@ public class DBManager{
     private final String user = System.getenv("DB_USER");
     private final String password = System.getenv("DB_PASSWORD");
 
-    public static final String query= "INSERT INTO visit_logs" +
-    "(time, ip, country, state, city, zip, lat, lon, status, reason, page)" +
-    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    public static final String query= "INSERT INTO logs.visit_logs" +
+    "(timestamp, ip, country, state, city, zip, lat, lon, data, reason, page)" +
+    " VALUES (to_timestamp(?, 'YYYY/MM/DD HH24:MI:SS'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
     public void insertRecord(VisitLog log) throws SQLException {
         boolean status = false;
