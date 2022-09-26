@@ -23,7 +23,7 @@ Resources:
         LogIngestor:
           Type: Api
           Properties:
-            Path: /hello
+            Path: /logingest
             Method: post
     Metadata:
       SamResourceId: LogIngestorFunction
@@ -31,7 +31,7 @@ Outputs:
   LogIngestorApi:
     Description: API Gateway endpoint URL for Prod stage for Log Ingestor function
     Value:
-      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/logingest/
   LogIngestorFunction:
     Description: Log Ingestor Lambda Function ARN
     Value:

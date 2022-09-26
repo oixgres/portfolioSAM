@@ -5,7 +5,7 @@
     <artifactId>LogIngestor</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
-    <name>A sample Hello World created for SAM CLI.</name>
+    <name>LogIngestor Function.</name>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -18,13 +18,29 @@
             <version>1.2.0</version>
         </dependency>
         <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-lambda-java-events</artifactId>
+            <version>3.6.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.konghq/unirest-objectmapper-jackson -->
+        <dependency>
+            <groupId>com.konghq</groupId>
+            <artifactId>unirest-objectmapper-jackson</artifactId>
+            <version>3.13.11</version>
+        </dependency>
+        <dependency>
           <groupId>junit</groupId>
           <artifactId>junit</artifactId>
           <version>4.13.1</version>
           <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.9</version>
+        </dependency>
     </dependencies>
-
     <build>
       <plugins>
         <plugin>
