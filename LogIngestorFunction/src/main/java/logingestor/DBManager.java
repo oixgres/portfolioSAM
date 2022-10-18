@@ -11,16 +11,12 @@ public class DBManager{
     private final String password = System.getenv("DB_PASSWORD");
 
     public static final String query= "INSERT INTO logs.visit_logs" +
-    "(timestamp, ip, country, state, city, zip, lat, lon, data, reason, page)" +
-    " VALUES (to_timestamp(?, 'YYYY/MM/DD HH24:MI:SS'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    "(timestamp, ip, country, state, city, zip, lat, lon, reason, page)" +
+    " VALUES (to_timestamp(?, 'YYYY/MM/DD HH24:MI:SS'), ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
     public void insertRecord(VisitLog log) throws SQLException {
-        boolean status = false;
-
         try (Connection conn = DriverManager.getConnection(endpoint, user, password);
             PreparedStatement preparedStatement = conn.prepareStatement(query)){
-            if (log.status == "success")
-                status = true;
     
             preparedStatement.setString(1, log.time);
             preparedStatement.setString(2, log.ip);
@@ -30,9 +26,8 @@ public class DBManager{
             preparedStatement.setString(6, log.zip);
             preparedStatement.setInt(7, log.lat);
             preparedStatement.setInt(8, log.lon);
-            preparedStatement.setBoolean(9, status);
-            preparedStatement.setString(10, log.reason);
-            preparedStatement.setString(11, log.page);
+            preparedStatement.setString(9, log.reason);
+            preparedStatement.setString(10, log.page);
     
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

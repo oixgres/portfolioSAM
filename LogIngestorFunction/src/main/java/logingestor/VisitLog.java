@@ -9,7 +9,6 @@ public class VisitLog{
     public String zip;
     public int lat;
     public int lon;
-    public String status;
     public String reason;
     public String page;
 }

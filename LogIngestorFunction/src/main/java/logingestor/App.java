@@ -23,7 +23,12 @@ public class App implements RequestHandler<APIGatewayProxyRequestEvent , APIGate
     public APIGatewayProxyResponseEvent handleRequest(final APIGatewayProxyRequestEvent input, final Context context) {
         Map<String, String> headers = new HashMap<>();
         headers.put("Content-Type", "application/json");
+        headers.put("Access-Control-Allow-Origin", "*");
+        headers.put("Access-Control-Allow-Headers", "Content-Type");
+        headers.put("Access-Control-Allow-Methods", "OPTIONS,POST");
         headers.put("X-Custom-Header", "application/json");
+
+
         try {
             String inputBody = input.getBody();
             ObjectMapper mapper = new ObjectMapper();
@@ -32,12 +37,12 @@ public class App implements RequestHandler<APIGatewayProxyRequestEvent , APIGate
 
             db.insertRecord(log);
 
-            String output = String.format("{\"response\": \"Log successfully stored\", \"visitlog\": \"%s\"}", log.time);
-            return new APIGatewayProxyResponseEvent().withHeaders(headers).withBody(output);
+            String output = String.format("{ \"message\": \"Success\" }");
+            return new APIGatewayProxyResponseEvent().withHeaders(headers).withBody(output).withStatusCode(200);
         } catch (IOException e) {
-            return new APIGatewayProxyResponseEvent().withHeaders(headers).withBody(e.getMessage());
+            return new APIGatewayProxyResponseEvent().withHeaders(headers).withBody(e.getMessage()).withStatusCode(400);
         } catch (SQLException e) {
-            return new APIGatewayProxyResponseEvent().withHeaders(headers).withBody(e.getMessage());
+            return new APIGatewayProxyResponseEvent().withHeaders(headers).withBody(e.getMessage()).withStatusCode(400);
         }
     }
 }
